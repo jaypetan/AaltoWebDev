@@ -1,0 +1,50 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run-e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Start application
+        run: docker compose up --build -d
+
+      - name: Run tests
+        run: docker compose run --rm --entrypoint=npx e2e-tests playwright test
+
+  deploy-client:
+    needs: run-e2e-tests
+    runs-on: ubuntu-latest
+
+    # permissions for deno deploy
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Load dependencies
+        run: deno install --allow-scripts
+        working-directory: ./client
+
+      - name: Build client
+        run: deno run --env-file=.env.development build
+        working-directory: ./client
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: deno-deploy-client-project-name
+          entrypoint: index.js
+          root: ./client/build/
