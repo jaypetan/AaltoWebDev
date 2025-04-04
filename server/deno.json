@@ -1,0 +1,17 @@
+{
+  "imports": {
+    "@hono/hono": "jsr:@hono/hono@4.6.5",
+    "postgres": "https://deno.land/x/postgresjs@v3.4.4/mod.js",
+    "scrypt": "jsr:@denorg/scrypt@4.4.4",
+    "zod": "https://deno.land/x/zod@v3.23.8/mod.ts",
+    "zValidator": "npm:@hono/zod-validator"
+  },
+  "deploy": {
+    "project": "0b8c03c6-9013-4741-b5ec-40b85b3a0b81",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "app-run.js"
+  }
+}

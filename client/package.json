@@ -1,0 +1,27 @@
+{
+	"name": "client",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"jose": "^6.0.10",
+		"@sveltejs/adapter-node": "^5.0.0"
+	},
+	"devDependencies": {
+		"@skeletonlabs/skeleton": "^3.0.0-next.13",
+		"@skeletonlabs/skeleton-svelte": "^1.0.0-next.22",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@tailwindcss/forms": "^0.5.10",
+		"@tailwindcss/vite": "^4.0.17",
+		"svelte": "^5.0.0",
+		"tailwindcss": "^4.0.17",
+		"vite": "^5.4.11"
+	}
+}
